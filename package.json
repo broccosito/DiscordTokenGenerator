@@ -1,0 +1,26 @@
+{
+  "name": "discordtokengenerator",
+  "version": "1.0.0",
+  "description": "Discord account generator with captcha solver, email verification, and phone verification.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@faker-js/faker": "^7.6.0",
+    "@zennolab_com/capmonstercloud-client": "^0.0.15",
+    "axios": "^1.2.2",
+    "cheerio": "^1.0.0-rc.12",
+    "consola": "^2.15.3",
+    "follow-redirects": "^1.15.2",
+    "nocaptchasolver": "^2.1.7",
+    "ora": "^6.1.2",
+    "querystring": "^0.2.1",
+    "tempmail.lol": "^2.0.3",
+    "url": "^0.11.0"
+  }
+}
