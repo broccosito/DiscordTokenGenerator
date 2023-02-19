@@ -33,13 +33,8 @@ async function follow(url) {
 }
 
 const getFingerprint = async (url) => {
-  const response = await fetch(url).catch((err) => {
-    console.log("mierda");
-  });
-
-  const json = await response.json().catch((err) => {
-    console.log("mierda");
-  });
+  const response = await fetch(url);
+  const json = await response.json();
 
   return json.fingerprint;
 };
@@ -102,7 +97,6 @@ const warmUp = async (token) => {
   );
 
   const captchaReqJson = await captchaReq.json();
-  console.log(captchaReqJson);
   if (!captchaReqJson.captcha_sitekey) {
     return warmToken.succeed(
       "Account successfully warmed up, no captcha required."
@@ -157,6 +151,7 @@ const warmUp = async (token) => {
 };
 
 const createAccount = async () => {
+  console.log("Creating account...");
   getFingerprint("https://discord.com/api/v9/experiments")
     .then(async (fingerprint) => {
       let email = await createInboxAsync();
@@ -512,7 +507,6 @@ const createAccount = async () => {
 
                     // Auth in case Discord invalidated the token right away
                     let accountNew = await login(accountEmail, accountPassword);
-                    console.log(accountNew);
                     if (!accountNew) {
                       accountNew = account.token;
                     }
@@ -563,5 +557,11 @@ const createAccount = async () => {
     });
 };
 
-createAccount();
-setInterval(createAccount, 120 * 1000);
+let threads = config.threads;
+if (typeof threads !== "number") threads = 1;
+
+const array = Array.from(Array(threads).keys());
+
+array.forEach((i) => {
+  createAccount();
+});

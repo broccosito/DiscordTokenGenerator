@@ -1,4 +1,5 @@
 export default {
+  threads: 10, // Number of threads to use
   invite: "tiktokvideo", // Accounts will be joined to this server automatically
   capmonster: {
     apiKey: "", // Get one from https://capmonster.cloud/Dashboard
